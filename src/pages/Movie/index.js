@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import api from '../../services/api'
 import styles from './Movie.module.css'
+import { toast } from 'react-toastify'
 
 const Movie = () => {
     const { id } = useParams()
@@ -42,13 +43,13 @@ const Movie = () => {
         const hasMovie = saveMovies.some((saveMovie) => saveMovie.id === movie.id)
 
         if (hasMovie) {
-            alert("This movie is already in your list!")
+            toast.warn("This movie is already in your list!")
             return
         }
 
         saveMovies.push(movie)
         localStorage.setItem("@primeflix", JSON.stringify(saveMovies))
-        alert("Movie save with success")
+        toast.success("Movie saved with success!")
     }
 
     if (loading) {
