@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import api from '../../services/api'
 import styles from './Movie.module.css'
 
@@ -34,6 +34,23 @@ const Movie = () => {
         }
     }, [navigate, id])
 
+    const saveMovie = () => {
+        const myList = localStorage.getItem("@primeflix")
+
+        let saveMovies = JSON.parse(myList) || []
+
+        const hasMovie = saveMovies.some((saveMovie) => saveMovie.id === movie.id)
+
+        if (hasMovie) {
+            alert("This movie is already in your list!")
+            return
+        }
+
+        saveMovies.push(movie)
+        localStorage.setItem("@primeflix", JSON.stringify(saveMovies))
+        alert("Movie save with success")
+    }
+
     if (loading) {
         return(
             <div className={styles.movie_info}>
@@ -44,7 +61,7 @@ const Movie = () => {
 
     return (
         <div className={styles.movie_info}>
-            <a href="/"><i class="bi bi-arrow-left"></i> Back</a>
+            <Link to={`/`}><i class="bi bi-arrow-left"></i> Back</Link>
             <h1>{movie.title}</h1>
             <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt={movie.title} />
             
@@ -54,7 +71,7 @@ const Movie = () => {
             <strong>Rating: {movie.vote_average} / 10</strong>
 
             <div className={styles.buttons}>
-                <button>Save</button>
+                <button onClick={saveMovie}>Save</button>
                 <a target="blank" rel="external" href={`https://youtube.com/results?search_query=${movie.title} trailer`}>Trailer</a>
             </div>
         </div>
