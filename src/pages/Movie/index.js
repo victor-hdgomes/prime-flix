@@ -61,7 +61,7 @@ const Movie = () => {
 
     return (
         <div className={styles.movie_info}>
-            <Link to={`/`}><i class="bi bi-arrow-left"></i> Back</Link>
+            <Link to={`/`}><i class="bi bi-arrow-left"></i> Home</Link>
             <h1>{movie.title}</h1>
             <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt={movie.title} />
             
