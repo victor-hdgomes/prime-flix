@@ -26,8 +26,9 @@
     margin-bottom: 14px;
     padding: 5px;
 }
+
 .my_movies ul li:hover {
-    background-color: #c3c4c4;
+    background-color: #e8e8e8;
     border-radius: 5px;
 }
 
@@ -47,8 +48,20 @@
     text-decoration: underline;
 }
 
-.body_li{
+.my_movies div button{
+    color: #eb1111;
+    font-weight: bolder;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.any_movie {
+    color: #116feb;
     text-decoration: none;
-    color: #000;
-    font-weight: bold;
+}
+
+.any_movie:hover {
+    text-decoration: underline;
 }
